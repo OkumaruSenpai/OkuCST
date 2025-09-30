@@ -1,35 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Botones en HTML</title>
-  <style>
-    .btn {
-      display: inline-block;
-      padding: 10px 16px;
-      margin: 5px;
-      background: #2196F3;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .btn:hover {
-      background: #0b7dda;
-    }
-  </style>
-</head>
-<body>
-  <h1>Ejemplos de botones</h1>
-
-  <!-- Botón básico -->
-  <button class="btn">Haz clic</button>
-
-  <!-- Botón que abre otra página -->
-  <a href="https://okusystem.com" class="btn">Visitar Oku System</a>
-
-  <!-- Botón con emoji -->
-  <button class="btn">🚀 Empezar ahora</button>
-</body>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>okuSystem - Sistemas profesionales para Roblox Studio</title>
+    <meta name="description" content="okuSystem ofrece sistemas profesionales de sonido, visualizadores, luces y música para Roblox Studio. Creado por oku, programador experto en códigos y sistemas." />
+    <meta property="og:title" content="okuSystem - Sistemas profesionales para Roblox Studio" />
+    <meta property="og:description" content="Sistemas de sonido, visualizadores, luces y música con playlist para Roblox Studio" />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
