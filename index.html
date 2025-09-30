@@ -1,40 +1,315 @@
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi primera página en GitHub Pages</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oku System — Soluciones que venden</title>
+  <meta name="description" content="Oku System: herramientas y servicios para impulsar tus ventas." />
+  <meta property="og:title" content="Oku System — Soluciones que venden" />
+  <meta property="og:description" content="Herramientas y servicios para impulsar tus ventas." />
+  <meta name="theme-color" content="#171A23" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='100%25' height='100%25' fill='%23171A23'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-size='36' fill='white'%3EOS%3C/text%3E%3C/svg%3E" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: linear-gradient(to right, #74ebd5, #ACB6E5);
-      color: #333;
-      margin: 0;
-      padding: 50px;
+    /* ====== Diseño base ====== */
+    :root{
+      --bg:#0f1220;
+      --panel:#171A23;
+      --ink:#E9EDF3;
+      --muted:#A7B0C0;
+      --brand:#6EE7F2;      /* acento */
+      --brand-2:#8B5CF6;    /* acento secundario */
+      --ok: #10B981;        /* verde para badges */
+      --warn:#F59E0B;
+      --radius:14px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --shadow-soft: 0 8px 20px rgba(0,0,0,.25);
     }
-    h1 {
-      color: #2c3e50;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b0d19 0%, #0f1220 100%);color:var(--ink);font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+    /* ====== Nav ====== */
+    header{position:sticky;top:0;background:rgba(15,18,32,.6);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid rgba(255,255,255,.06);z-index:50}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    .logo{
+      width:36px;height:36px;border-radius:10px;background:
+        radial-gradient(120% 120% at 0% 0%, var(--brand) 0%, transparent 60%),
+        radial-gradient(120% 120% at 100% 100%, var(--brand-2) 0%, transparent 60%),
+        linear-gradient(135deg,#1E2333,#121522);
+      box-shadow: var(--shadow-soft);
     }
-    p {
-      font-size: 18px;
+    .menu{display:flex;gap:20px;align-items:center}
+    .menu a{opacity:.9}
+    .menu .btn{padding:10px 14px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b0d19;font-weight:700}
+
+    /* ====== Hero ====== */
+    .hero{padding:80px 0 40px; position:relative; overflow:hidden}
+    .hero .grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--muted)}
+    .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(16,185,129,.15)}
+    h1{font-size:44px;line-height:1.1;margin:18px 0 12px}
+    .lead{font-size:18px;color:#C9D2E3;max-width:52ch}
+    .cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
+      background:var(--panel);color:var(--ink);box-shadow:var(--shadow-soft)
     }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 15px;
-      background: #2c3e50;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
+    .btn.primary{border:none;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#0b0d19;font-weight:800}
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.08);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow);
     }
-    a:hover {
-      background: #1abc9c;
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .kpi{background:#0f1425;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}
+    .kpi .big{font-size:28px;font-weight:800}
+
+    /* ====== Secciones ====== */
+    section{padding:64px 0}
+    .title{font-size:28px;margin:0 0 8px}
+    .sub{color:var(--muted);margin:0 0 24px}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;box-shadow:var(--shadow-soft)}
+    .card h3{margin:6px 0 8px}
+    .chip{display:inline-block;font-size:12px;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#C9D2E3}
+
+    /* ====== Precios ====== */
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .plan{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+    .plan h3{margin:6px 0 4px}
+    .price{font-size:34px;font-weight:800;margin:8px 0}
+    .features{list-style:none;margin:12px 0 0;padding:0}
+    .features li{margin:8px 0;color:#C9D2E3}
+
+    /* ====== Testimonios ====== */
+    .testis{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .testi{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;font-size:15px}
+    .who{margin-top:12px;color:#C9D2E3}
+
+    /* ====== Contacto ====== */
+    form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    form .full{grid-column:1/-1}
+    input, textarea{
+      width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);
+      background:#0e1220;color:var(--ink)
+    }
+    textarea{min-height:120px;resize:vertical}
+    .tiny{font-size:12px;color:var(--muted)}
+
+    /* ====== Footer ====== */
+    footer{padding:28px 0;border-top:1px solid rgba(255,255,255,.06);color:#A7B0C0}
+
+    /* ====== Responsive ====== */
+    @media (max-width: 960px){
+      .hero .grid{grid-template-columns:1fr}
+      .cards, .pricing, .testis{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .menu{display:none}
+      .cards, .pricing, .testis{grid-template-columns:1fr}
+      h1{font-size:34px}
     }
   </style>
 </head>
 <body>
-  <h1>¡Hola, GitHub Pages! 🚀</h1>
-  <p>Este es un ejemplo de página publicada en <strong>GitHub Pages</strong>.</p>
-  <a href="https://pages.github.com/" target="_blank">Aprender más</a>
+
+  <!-- ====== NAV ====== -->
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Oku System</span>
+      </div>
+      <nav class="menu">
+        <a href="#servicios">Servicios</a>
+        <a href="#precios">Precios</a>
+        <a href="#testimonios">Casos</a>
+        <a class="btn" href="#contacto">Contactar</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <div class="badge"><span class="dot"></span> Nuevo: Panel de ventas 2.0</div>
+        <h1>Impulsa tus <em>ventas</em> con Oku System</h1>
+        <p class="lead">Implementamos páginas de alto rendimiento, automatizaciones y analítica para convertir tráfico en clientes, sin complicarte.</p>
+        <div class="cta">
+          <a class="btn primary" href="#precios">Ver planes</a>
+          <a class="btn" href="#servicios">Cómo funciona</a>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><div class="big">+38%</div><div class="muted">tasa de conversión</div></div>
+          <div class="kpi"><div class="big">-27%</div><div class="muted">costo por lead</div></div>
+          <div class="kpi"><div class="big">14d</div><div class="muted">tiempo a valor</div></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <!-- Mini “mockup” del producto -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="card">
+            <span class="chip">Embudo</span>
+            <h3>Landing + CRM</h3>
+            <p style="color:#C9D2E3">Captura leads y haz seguimiento automático.</p>
+          </div>
+          <div class="card">
+            <span class="chip">Automations</span>
+            <h3>WhatsApp & Email</h3>
+            <p style="color:#C9D2E3">Secuencias listas para vender 24/7.</p>
+          </div>
+          <div class="card">
+            <span class="chip">Analytics</span>
+            <h3>Panel de ventas</h3>
+            <p style="color:#C9D2E3">Mide campañas, ROAS y conversiones.</p>
+          </div>
+          <div class="card">
+            <span class="chip">Integraciones</span>
+            <h3>Shop/Pay/Sheets</h3>
+            <p style="color:#C9D2E3">Conecta con tus herramientas favoritas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SERVICIOS ====== -->
+  <section id="servicios">
+    <div class="wrap">
+      <h2 class="title">¿Qué hacemos?</h2>
+      <p class="sub">Paquetes claros para acelerar tu canal digital.</p>
+      <div class="cards">
+        <article class="card">
+          <span class="chip">01</span>
+          <h3>Estrategia y diseño</h3>
+          <p>Arquitectura de información, propuesta de valor y UI enfocada en conversión.</p>
+        </article>
+        <article class="card">
+          <span class="chip">02</span>
+          <h3>Implementación</h3>
+          <p>Landing de alto rendimiento en GitHub Pages u hosting a elección.</p>
+        </article>
+        <article class="card">
+          <span class="chip">03</span>
+          <h3>Automatizaciones</h3>
+          <p>WhatsApp/Email marketing, lead scoring y secuencias de nurturing.</p>
+        </article>
+        <article class="card">
+          <span class="chip">04</span>
+          <h3>Analítica</h3>
+          <p>Tracking de eventos, panel de ventas y reportes semanales.</p>
+        </article>
+        <article class="card">
+          <span class="chip">05</span>
+          <h3>Optimización</h3>
+          <p>Tests A/B, mejoras de velocidad y microcopys que convierten.</p>
+        </article>
+        <article class="card">
+          <span class="chip">06</span>
+          <h3>Soporte</h3>
+          <p>Capacitación, documentación y acompañamiento mensual.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PRECIOS ====== -->
+  <section id="precios">
+    <div class="wrap">
+      <h2 class="title">Planes y precios</h2>
+      <p class="sub">Elige el plan que mejor se adapte a tu etapa.</p>
+
+      <div class="pricing">
+        <div class="plan">
+          <span class="chip">Starter</span>
+          <h3>Para validar</h3>
+          <p class="price">$0</p>
+          <ul class="features">
+            <li>Landing 1 sección en GitHub Pages</li>
+            <li>Formulario a email</li>
+            <li>Guía de publicación</li>
+          </ul>
+          <div class="cta"><a class="btn primary" href="#contacto">Comenzar</a></div>
+        </div>
+
+        <div class="plan" style="border-color:rgba(139,92,246,.5)">
+          <span class="chip">Growth</span>
+          <h3>Para escalar</h3>
+          <p class="price">$199/mes</p>
+          <ul class="features">
+            <li>Embudo completo (Landing + Gracias)</li>
+            <li>Automations WhatsApp/Email</li>
+            <li>Panel de ventas básico</li>
+          </ul>
+          <div class="cta"><a class="btn primary" href="#contacto">Solicitar demo</a></div>
+        </div>
+
+        <div class="plan">
+          <span class="chip">Pro</span>
+          <h3>A medida</h3>
+          <p class="price">A cotizar</p>
+          <ul class="features">
+            <li>Integraciones (Shopify/Stripe/Zapier)</li>
+            <li>Analytics avanzado y ROAS</li>
+            <li>Optimización continua</li>
+          </ul>
+          <div class="cta"><a class="btn" href="#contacto">Hablar con ventas</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TESTIMONIOS ====== -->
+  <section id="testimonios">
+    <div class="wrap">
+      <h2 class="title">Historias que venden</h2>
+      <p class="sub">Resultados reales de clientes reales.</p>
+      <div class="testis">
+        <div class="testi">
+          “Duplicamos los leads en 30 días. El panel nos ahorró horas de reportes.”
+          <div class="who">— Ana R., Retail</div>
+        </div>
+        <div class="testi">
+          “Los flujos de WhatsApp cerraron ventas el primer fin de semana.”
+          <div class="who">— Luis M., Educación</div>
+        </div>
+        <div class="testi">
+          “Mejoramos la velocidad y el SEO, y subió la conversión.”
+          <div class="who">— Sofía G., SaaS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CONTACTO ====== -->
+  <section id="contacto">
+    <div class="wrap">
+      <h2 class="title">Hablemos</h2>
+      <p class="sub">Cuéntanos sobre tu proyecto y te respondemos en 24h.</p>
+      <form onsubmit="event.preventDefault(); alert('¡Gracias! Te contactaremos muy pronto.');">
+        <input type="text" name="nombre" placeholder="Nombre" required />
+        <input type="email" name="email" placeholder="Correo" required />
+        <input type="text" name="empresa" placeholder="Empresa" />
+        <textarea class="full" name="mensaje" placeholder="¿Qué necesitas?"></textarea>
+        <label class="tiny"><input type="checkbox" required /> Autorizo uso de mis datos para contactarme.</label>
+        <button class="btn primary" type="submit">Enviar</button>
+      </form>
+      <p class="tiny" style="margin-top:10px">También por correo: <a href="mailto:ventas@okusystem.com">ventas@okusystem.com</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      © <span id="y"></span> Oku System. Todos los derechos reservados. · <a href="#">Privacidad</a>
+    </div>
+  </footer>
+
+  <script>
+    // año automático en el footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
